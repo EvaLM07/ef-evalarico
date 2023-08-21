@@ -1,31 +1,30 @@
-@server = https://ubiquitous-dollop-vgqvx7jqrh5-8080.app.github.dev
-@instrumentos = {{server}}/api/instrumentos
-@musicos = {{server}}/api/musicos
+@server = https://legendary-space-umbrella-pxqqj4p5q47frjvj-8080.app.github.dev/
+@ugeles = {{server}}/api/ugeles
+@colegios = {{server}}/api/colegios
 ###
-GET {{instrumentos}}/1
+GET {{ugeles}}/1
 ###
-POST {{instrumentos}}
+POST {{ugeles}}
 Content-Type: application/json
 
 {
-  "nombre" : "Quena",
-  "categoria" : "Instrumento de viento",
-  "descripcion" : "tubo con orificios que al taparlos hacen sonar diferentes notas"
+  "nombre" : "Ugel 03",
 }
 ###
-GET {{musicos}}
+GET {{colegios}}
 ###
-GET {{musicos}}/1
+GET {{colegios}}/1
 ###
-PATCH {{musicos}}/1
+PATCH {{colegios}}/1
 Content-Type: application/json
 
 {
-  "nombre" : "Jaime Hendrix"
+  "nombre" : "Maria Auxiliadora",
+  "direccion" : "Av Proceres"
 }
 ###
-GET {{server}}/api/bandas/1
+GET {{server}}/api/alumnos/1
 ###
-GET {{server}}/api/integrantes
+GET {{server}}/api/alumnoslists
 ###
-GET {{server}}/api/bandas/1/formacion
+GET {{server}}/api/alumnos/1/formacion

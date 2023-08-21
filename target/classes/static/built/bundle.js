@@ -41090,7 +41090,7 @@ var UgelList = /*#__PURE__*/function (_React$Component2) {
       var ugeles = this.props.ugeles.map(function (ugel) {
         return /*#__PURE__*/React.createElement(Ugel, {
           key: ugel._links.self.href,
-          ugel: ugel
+          instrumento: ugel
         });
       });
       return /*#__PURE__*/React.createElement("table", {
