@@ -7,37 +7,41 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Banda {
+public class Colegio {
 
 	private @Id @GeneratedValue Long id;
 	private String nombre;
+	private String direccion;
 
-	private Banda() {}
+	private Colegio() {}
 
-	public Banda(String nombre) {
+	public Colegio(String nombre, String direccion) {
 		this.nombre = nombre;
+		this.direccion = direccion;
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Banda oo = (Banda) o;
-		return Objects.equals(id, oo.id) &&
-			Objects.equals(nombre, oo.nombre);
+		Colegio colegio = (Colegio) o;
+		return Objects.equals(id, colegio.id) &&
+			Objects.equals(nombre, colegio.nombre) &&
+			Objects.equals(direccion, colegio.direccion);
 	}
 
 	@Override
 	public int hashCode() {
 
-		return Objects.hash(id, nombre);
+		return Objects.hash(id, nombre, direccion);
 	}
 
 	@Override
 	public String toString() {
-		return "Banda{" +
+		return "Instrumento{" +
 			"id=" + id +
 			", nombre='" + nombre + '\'' +
+			", direccion='" + direccion + '\'' +
 			'}';
 	}
 
@@ -57,5 +61,12 @@ public class Banda {
 		this.nombre = nombre;
 	}
 
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
 
 }

@@ -4,37 +4,29 @@ const { Link } = require('react-router-dom');
 const client = require('../client');
 const {useState} = require('react');
 
-function PageNuevoInstrumento() {
+function PageNuevoUgel() {
 
     const [nombre, setNombre] = useState("");
-    const [categoria, setCategoria] = useState("");
-    const [descripcion, setDescripcion] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
         client({
             method: 'POST',
             path: '/api/instrumentos',
-            entity: { nombre: nombre, categoria: categoria, descripcion: descripcion },
+            entity: { nombre: nombre },
             headers: { 'Content-Type': 'application/json' }
         }).done( () => window.location = "/");
     };
 
     return (
         <>
-            <h1>Nuevo Instrumento</h1>
+            <h1>Nuevo Ugel</h1>
             <form onSubmit={handleSubmit}>
 
                 <label htmlFor="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" onChange={(e)=>setNombre(e.target.value)} /><br />
                 
-                <label htmlFor="categoria">Categoría</label>
-                <input type="text" id="categoria" name="categoria" onChange={(e)=>setCategoria(e.target.value)} /><br />
-
-                <label htmlFor="nombre">Descripción</label>
-                <input type="text" id="descripcion" name="descripcion" onChange={(e)=>setDescripcion(e.target.value)} /><br />
-                
-                <input type="submit" value="Nuevo Instrumento" />
+                <input type="submit" value="Nuevo Ugel" />
             </form>
             <hr />
             <Link to="/">Volver</Link>
@@ -42,4 +34,4 @@ function PageNuevoInstrumento() {
     );
 }
 
-module.exports = PageNuevoInstrumento;
+module.exports = PageNuevoUgel;

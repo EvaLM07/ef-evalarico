@@ -4,37 +4,37 @@ const {useParams} = require('react-router-dom');
 const client = require('../client');
 const {Link} = require('react-router-dom');
 
-const VerBandaPage = ()=>{
+const VerAlumnoPage = ()=>{
 
     let {id} = useParams();
-    const [banda, setBanda] = useState({});
-    const [integrantes, setIntegrantes] = useState([]);
+    const [alumno, setAlumno] = useState({});
+    const [alumnolists, setAlumnoList] = useState([]);
 
     useEffect(()=>{
 
-        const url_banda = '/api/bandas/'+id
+        const url_alumno = '/api/alumnos/'+id
 
         client({
             method: 'GET',
-            path: url_banda
-        }).done((response)=>{setBanda(response.entity);})
+            path: url_alumno
+        }).done((response)=>{setAlumno(response.entity);})
 
         client({
             method: 'GET',
-            path: url_banda + '/formacion'
-        }).done((response)=>{setIntegrantes(response.entity);})
+            path: url_alumno + '/formacion'
+        }).done((response)=>{setAlumnoList(response.entity);})
 
     }, []);
 
     return (
         <>
-            <h1>Ver Banda</h1>
+            <h1>Ver Alumno</h1>
 
             <table border="1">
                 <tbody>
                     <tr>
                         <th>Nombre</th>
-                        <td>{banda.nombre}</td>
+                        <td>{alumno.nombre}</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,27 +44,27 @@ const VerBandaPage = ()=>{
             <table border="1">
                 <thead>
                     <tr>
-                        <th colSpan="2">Integrantes</th>  
+                        <th colSpan="2">Lista de Alumno</th>  
                     </tr>
                     <tr>
-                        <th>Musico</th>
-                        <th>Instrumento</th>
+                        <th>Colegio</th>
+                        <th>Ugel</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {integrantes.map(integrante => {
+                    {alumnolists.map(alumnolist => {
                         return (
-                            <tr key={integrante.ID}>
-                                <td>{integrante.MUSICO}</td>
-                                <td>{integrante.INSTRUMENTO}</td>
+                            <tr key={alumnolist.ID}>
+                                <td>{alumnolist.COLEGIO}</td>
+                                <td>{alumnolist.UGEL}</td>
                             </tr>
                         );
                     })}
                 </tbody>
             </table>
-            <Link to={`/ver-banda/${id}/nuevo-integrante`}>Nuevo Integrante</Link> | <Link to="/">Volver</Link>
+            <Link to={`/ver-alumno/${id}/nuevo-alumnolist`}>Nueva Lista de Alumno</Link> | <Link to="/">Volver</Link>
         </>
     );
 }
 
-module.exports = VerBandaPage;
+module.exports = VerAlumnoPage;

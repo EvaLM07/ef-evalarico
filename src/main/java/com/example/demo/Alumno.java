@@ -7,24 +7,30 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class Musico {
+public class Alumno {
 
 	private @Id @GeneratedValue Long id;
 	private String nombre;
+	private String apellido;
+	private Integer edad;
 
-	private Musico() {}
+	private Alumno() {}
 
-	public Musico(String nombre) {
+	public Alumno(String nombre, String apellido, Integer edad) {
 		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Musico musico = (Musico) o;
-		return Objects.equals(id, musico.id) &&
-			Objects.equals(nombre, musico.nombre);
+		Alumno oo = (Alumno) o;
+		return Objects.equals(id, oo.id) &&
+			Objects.equals(nombre, oo.nombre) &&
+			Objects.equals(apellido, oo.apellido) &&
+			Objects.equals(edad, oo.edad);
 	}
 
 	@Override
@@ -35,9 +41,11 @@ public class Musico {
 
 	@Override
 	public String toString() {
-		return "Instrumento{" +
+		return "Alumno{" +
 			"id=" + id +
 			", nombre='" + nombre + '\'' +
+			", apellido='" + apellido + '\'' +
+			", edad='" + edad + '\'' +
 			'}';
 	}
 
@@ -56,6 +64,23 @@ public class Musico {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Integer getEdad() {
+		return edad;
+	}
+
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+
 
 
 }

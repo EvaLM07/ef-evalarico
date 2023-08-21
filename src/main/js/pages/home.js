@@ -5,50 +5,48 @@ const {Link} = require('react-router-dom');
 class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { instrumentos: [], musicos: [], bandas: [] };
+		this.state = { ugeles: [], colegios: [], alumnos: [] };
 	}
 	componentDidMount() {
-		client({ method: 'GET', path: '/api/instrumentos' }).done(response => {
-			this.setState({ instrumentos: response.entity._embedded.instrumentos });
+		client({ method: 'GET', path: '/api/ugeles' }).done(response => {
+			this.setState({ ugeles: response.entity._embedded.ugeles });
 		});
-		client({ method: 'GET', path: '/api/musicos' }).done(response => {
-			this.setState({ musicos: response.entity._embedded.musicos });
+		client({ method: 'GET', path: '/api/colegios' }).done(response => {
+			this.setState({ colegios: response.entity._embedded.colegios });
 		});
-		client({ method: 'GET', path: '/api/bandas' }).done(response => {
-			this.setState({ bandas: response.entity._embedded.bandas });
+		client({ method: 'GET', path: '/api/alumnos' }).done(response => {
+			this.setState({ alumnos: response.entity._embedded.alumnos });
 		});
 	}
 	render() {
 		return (
 			<>
-                <h1>Aplicación Demo</h1>
+                <h1>Evaluacion Final - Eva Larico</h1>
 
 				<div style={{"width": "100%","display": "flex"}} >
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Instrumento" emoji="🎸" />
-						<InstrumentoList instrumentos={this.state.instrumentos} />
+						<Titulo entidad="Ugel" emoji="🏢" />
+						<UgelList ugeles={this.state.ugeles} />
 						<br />
-						<Link to="/nuevo-instrumento">Nuevo Instrumento</Link>
+						<Link to="/nuevo-ugel">Nuevo Ugel</Link>
 					</div>
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Músico" emoji="🎵" />
-						<MusicoList musicos={this.state.musicos} />
+						<Titulo entidad="Colegio" emoji="🏫" />
+						<ColegioList colegios={this.state.colegios} />
 						<br />
-						<Link to="/nuevo-musico">Nuevo Músico</Link>
+						<Link to="/nuevo-musico">Nuevo Colegio</Link>
 					</div>
 
 					<div style={{"width": "calc(100%/3)"}}>
-						<Titulo entidad="Banda" emoji="👩🏼‍🎤" />
-						<BandaList bandas={this.state.bandas} />
+						<Titulo entidad="Alumno" emoji="👨‍🎓" />
+						<AlumnoList alumnos={this.state.alumnos} />
 						<br />
-						<Link to="/nueva-banda">Nueva Banda</Link>
+						<Link to="/nueva-banda">Nuevo Alumno</Link>
 					</div>
 
 				</div>
-
-
 
 			</>
 		)
